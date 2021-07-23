@@ -1,0 +1,14 @@
+.listItem {
+    list-style: none;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding:15px;
+    border:1px dashed var(--secondary);
+    width: 80%;
+}
+.listItem:hover{
+    cursor: pointer;
+    background: var(--secondary);
+    color:var(--primary);
+}

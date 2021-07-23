@@ -1,0 +1,14 @@
+.column{
+    width:50%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    overflow-y:auto;
+    overflow-x: hidden;
+    border:1px solid var(--secondary);
+    color:var(--secondary);
+    background:var(--primary);
+}

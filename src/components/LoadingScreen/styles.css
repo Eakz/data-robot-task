@@ -1,0 +1,22 @@
+.loadingScreen{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondary);
+}
+.loadingScreenReversed{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+}
+.loadingScreen h1{
+    color:var(--primary)
+}
+.loadingScreenReversed h1{
+    color:var(--secondary)
+}
