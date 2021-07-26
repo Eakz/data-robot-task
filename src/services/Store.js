@@ -2,7 +2,7 @@ import { createContext, useReducer, useContext } from "react";
 import { DEFAULT_PRIMARY, DEFAULT_SECONDARY, DEFAULT_THEME } from '../app/constants'
 
 const initialState = {
-    theme: DEFAULT_THEME,
+    theme: localStorage.getItem('theme')|| DEFAULT_THEME,
     primaryCurrency: DEFAULT_PRIMARY,
     secondaryCurrency: DEFAULT_SECONDARY,
     currencyData: {},
@@ -16,6 +16,7 @@ const DispatchContext = createContext({});
 const reducer = (state, action) => {
     switch (action.type) {
         case 'SET_THEME':
+            localStorage.setItem('theme',action.payload)
             return {
                 ...state,
                 theme: action.payload
