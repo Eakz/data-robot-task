@@ -3,7 +3,7 @@ import { createContext, useReducer, useContext } from "react";
 const initialState = {
     theme: 'light',
     primaryCurrency: 'USD',
-    secondaryCurrency: '',
+    secondaryCurrency: 'USD',
     currencyData: {},
 
 

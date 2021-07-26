@@ -3,7 +3,7 @@ import './styles.css'
 
 const LoadingScreen = ({reversed}) => {
     return (
-        <div className={reversed?"loadingScreenReversed":"loadingScreen"}><h1>loading...</h1></div>
+        <div id="loading" className={reversed?"loadingScreenReversed":"loadingScreen"} />
     )
 }
 

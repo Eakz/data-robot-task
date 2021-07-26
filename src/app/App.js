@@ -1,6 +1,7 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ApiService from '../services/ApiService'
-import { getAlltoOne, getBetweenDates } from './constants'
+import { getBetweenDates } from './helpers'
+import { getAlltoOne } from './helpers'
 import { useDispatch, useStore } from '../services/Store'
 import './main.css'
 import Column from '../components/Column'
@@ -28,7 +29,7 @@ const App = () => {
 
 
     }, [dispatch, primaryCurrency, secondaryCurrency])
-    
+
     const pData = (response) => {
         const daysDataPrimary = []
         const daysDataSecondary = []
