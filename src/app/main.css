@@ -54,3 +54,30 @@ svg {
   .field input {
     margin-right: 0.5em;
   }
+
+  /* Media Queries */
+  @media screen and (max-width: 1000px) {
+    #pageLayout {
+      width: 100vw;
+      height: 100vh;
+      flex-direction: column;
+      padding-top:10%;
+  }
+  #pageLayout>*:first-child{
+    display: none;
+  }
+  #chart-container{
+    width: fit-content;
+    margin:0 12%;
+  }
+    .column{
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .column ul li{
+      width: 90%;
+    }
+
+  }

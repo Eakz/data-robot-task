@@ -117,7 +117,7 @@ function ZoomableLineChart({ data, data2,days, id = "myZoomableLineChart", id2 =
     }, [currentZoomState, data, data2, dimensions, theme]);
 
     return (
-        <React.Fragment>
+        <div id="chart-container">
             <h5>DISCLAIMER: API couldn't provide info regarding the exchange rates for last 24 hours therefore I exchanged that for last month</h5>
 
             <div ref={wrapperRef} style={{ marginBottom: "2rem", position: 'relative' }}>
@@ -141,7 +141,7 @@ function ZoomableLineChart({ data, data2,days, id = "myZoomableLineChart", id2 =
                     </div>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
