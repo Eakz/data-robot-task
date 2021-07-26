@@ -12,7 +12,7 @@ const CurrencyExchangeForm = () => {
     const [primaryValue, setPrimaryValue] = useState(1);
     const [secondaryValue, setSecondaryValue] = useState(1);
     const handlePrimaryChange = (v) => dispatch({ type: 'SET_PRIMARY', payload: v })
-    const handleSecondaryChange = (v) => { dispatch({ type: 'SET_SECONDARY', payload: v }); handleP() }
+    const handleSecondaryChange = (v) => dispatch({ type: 'SET_SECONDARY', payload: v })
     const [loading, setLoading] = useState(false)
 
     const date = useMemo(() => Object.keys(currencyData)[0], [currencyData[0], loading])
@@ -20,15 +20,18 @@ const CurrencyExchangeForm = () => {
         setPrimaryValue(Math.round(Number(e?.target?.value || 1)));
         setSecondaryValue(Number(Number(e?.target?.value || 1) * currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
     }
-    const handleS = async (e) => {
+    useEffect(() => {
         setLoading(true)
-        await ApiService.apiCall({
+        ApiService.apiCall({
             url: getAlltoOne(primaryCurrency),
         }).then(response => { dispatch({ type: 'SET_CURRENCY', payload: response.data }); setLoading(false) })
-
-        setSecondaryValue(Math.round(Number(e?.target?.value || 1)));
-        setPrimaryValue(Number(Number(e?.target?.value || 1) / currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
-    }
+    }, [dispatch, primaryCurrency])
+    useEffect(() => {
+        if(Object.keys(currencyData).length){
+            setSecondaryValue(Number(primaryValue * currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
+        }
+        
+    }, [secondaryCurrency, primaryValue])
 
 
     return (
@@ -50,9 +53,6 @@ const CurrencyExchangeForm = () => {
 
                     <input name="primaryV" value={primaryValue} type="number" onChange={handleP} min="0" step="1" /></label>
                 <br />
-                {secondaryCurrency && <label about="secondaryV">{secondaryCurrency}
-                    <input name="secondaryV" value={secondaryValue} type="number" onChange={handleS} min="0" step="1" /></label>}
-
                 <div className="formRow">
                     <h1>
                         {`${primaryValue} ${primaryCurrency} = ${secondaryValue} ${secondaryCurrency}`}

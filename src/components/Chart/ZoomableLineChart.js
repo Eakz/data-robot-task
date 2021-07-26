@@ -8,6 +8,7 @@ import {
     axisBottom,
     axisLeft,
     zoom,
+    min,
 } from "d3";
 import useResizeObserver from "./useResizeObserver";
 import { useStore } from "../../services/Store";
@@ -17,12 +18,12 @@ import { useStore } from "../../services/Store";
  */
 
 function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZoomableLineChart2" }) {
+    console.log(data,data2);
     const svgRef = useRef();
     const {theme}=useStore()
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
     const [currentZoomState, setCurrentZoomState] = useState();
-
     // will be called initially and on every data change
     useEffect(() => {
         const svg = select(svgRef.current);
@@ -42,7 +43,7 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
         }
 
         const yScale = scaleLinear()
-            .domain([0, max(data)])
+            .domain([min([...data,...data2]), max([...data,...data2])])
             .range([height - 10, 10]);
 
         const lineGenerator = line()
@@ -112,7 +113,7 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
             });
 
         svg.call(zoomBehavior);
-    }, [currentZoomState, data, dimensions]);
+    }, [currentZoomState, data, data2, dimensions, theme]);
 
     return (
         <React.Fragment>

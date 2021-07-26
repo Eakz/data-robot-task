@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ApiService from '../services/ApiService'
 import { getBetweenDates } from './helpers'
-import { getAlltoOne } from './helpers'
 import { useDispatch, useStore } from '../services/Store'
 import './main.css'
 import Column from '../components/Column'
@@ -17,18 +16,11 @@ const App = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         ApiService.apiCall({
-            url: getAlltoOne(currency)
-        }).then(response => dispatch({ type: 'SET_CURRENCY', payload: response.data }))
-
-
-    }, [dispatch, currency])
-    useEffect(() => {
-        ApiService.apiCall({
             url: getBetweenDates(currency)
         }).then(response => pData(response))
 
 
-    }, [dispatch, primaryCurrency, secondaryCurrency])
+    }, [currency, dispatch, primaryCurrency, secondaryCurrency])
 
     const pData = (response) => {
         const daysDataPrimary = []
