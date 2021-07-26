@@ -17,10 +17,11 @@ import './styles.css'
  * Component that renders a ZoomableLineChart
  */
 
-function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZoomableLineChart2" }) {
-    console.log(data,data2);
+function ZoomableLineChart({ data, data2,days, id = "myZoomableLineChart", id2 = "myZoomableLineChart2" }) {
+    console.log(data, data2);
     const svgRef = useRef();
-    const {theme,primaryCurrency,secondaryCurrency}=useStore()
+    console.log(days)
+    const { theme, primaryCurrency, secondaryCurrency } = useStore()
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
     const [currentZoomState, setCurrentZoomState] = useState();
@@ -43,7 +44,7 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
         }
 
         const yScale = scaleLinear()
-            .domain([min([...data,...data2]), max([...data,...data2])])
+            .domain([min([...data, ...data2]), max([...data, ...data2])])
             .range([height - 10, 10]);
 
         const lineGenerator = line()
@@ -57,7 +58,7 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
             .data([data])
             .join("path")
             .attr("class", "myLine")
-            .attr("stroke",theme==='light'?'black':'white')
+            .attr("stroke", theme === 'light' ? 'black' : 'white')
             .attr("fill", "none")
             .attr("d", lineGenerator);
         svgContent2
@@ -117,7 +118,9 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
 
     return (
         <React.Fragment>
-            <div ref={wrapperRef} style={{ marginBottom: "2rem",position:'relative' }}>
+            <h5>DISCLAIMER: API couldn't provide info regarding the exchange rates for last 24 hours therefore I exchanged that for last month</h5>
+
+            <div ref={wrapperRef} style={{ marginBottom: "2rem", position: 'relative' }}>
                 <svg ref={svgRef}>
                     <defs>
                         <clipPath id={id}>
