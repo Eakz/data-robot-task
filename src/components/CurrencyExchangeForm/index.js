@@ -40,7 +40,7 @@ const CurrencyExchangeForm = () => {
             setSecondaryValue(Number(primaryValue * currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
         }
 
-    }, [secondaryCurrency, primaryValue])
+    }, [secondaryCurrency, primaryValue, primaryCurrency])
 
 
     return (
