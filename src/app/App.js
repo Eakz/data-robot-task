@@ -11,16 +11,15 @@ import ZoomableLineChart from '../components/Chart/ZoomableLineChart'
 
 const App = () => {
     const { theme, currencyData, primaryCurrency, secondaryCurrency } = useStore()
-    const [currency, setCurrency] = useState(primaryCurrency)
     const [graphData, setGraphData] = useState([[], []])
     const dispatch = useDispatch()
     useEffect(() => {
         ApiService.apiCall({
-            url: getBetweenDates(currency)
+            url: getBetweenDates(primaryCurrency)
         }).then(response => pData(response))
 
 
-    }, [currency, dispatch, primaryCurrency, secondaryCurrency])
+    }, [dispatch, primaryCurrency, secondaryCurrency])
 
     const pData = (response) => {
         const daysDataPrimary = []
@@ -39,8 +38,7 @@ const App = () => {
 
         <div id="pageLayout">
             <Column>
-                <h1>{date}</h1>
-                <h1>{currency}</h1>
+
                 {
                     Object.keys(currencyData).length ? <CurrencyList
                         currencyData={currencyData}

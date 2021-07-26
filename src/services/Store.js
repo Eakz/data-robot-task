@@ -1,9 +1,10 @@
 import { createContext, useReducer, useContext } from "react";
+import { DEFAULT_PRIMARY, DEFAULT_SECONDARY, DEFAULT_THEME } from '../app/constants'
 
 const initialState = {
-    theme: 'light',
-    primaryCurrency: 'USD',
-    secondaryCurrency: 'USD',
+    theme: DEFAULT_THEME,
+    primaryCurrency: DEFAULT_PRIMARY,
+    secondaryCurrency: DEFAULT_SECONDARY,
     currencyData: {},
 
 
@@ -33,12 +34,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 currencyData: action.payload
-            }      
+            }
         case 'SET_GRAPH_DATA':
             return {
                 ...state,
                 currencyData: action.payload
-            }    
+            }
         default:
             throw new Error();
     }

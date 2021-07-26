@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 // Constants
-import { API_URL } from "../app/constants";
+import { API_URL, API_KEY } from "../app/constants";
 
 class ApiService {
   constructor() {
@@ -23,16 +23,11 @@ class ApiService {
   }) {
     let options = {
       url,
-      method,
-      // headers: {
-      //   "accept": "application/json",
-      //   "content-type": "application/json",
-      //   "apikey": "55191a20-e879-11eb-a954-230b9d488c72"
-      // },
+      method
     };
 
     if (otherParams) options = { ...options, ...otherParams };
-    options.url=options.url+`apikey=55191a20-e879-11eb-a954-230b9d488c72`
+    options.url = options.url + `apikey=${API_KEY}`
     return this.client(options)
       .then(this.handleCommonSuccess)
       .catch(this.handleCommonError);

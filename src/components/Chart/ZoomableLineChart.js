@@ -12,7 +12,7 @@ import {
 } from "d3";
 import useResizeObserver from "./useResizeObserver";
 import { useStore } from "../../services/Store";
-
+import './styles.css'
 /**
  * Component that renders a ZoomableLineChart
  */
@@ -20,7 +20,7 @@ import { useStore } from "../../services/Store";
 function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZoomableLineChart2" }) {
     console.log(data,data2);
     const svgRef = useRef();
-    const {theme}=useStore()
+    const {theme,primaryCurrency,secondaryCurrency}=useStore()
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
     const [currentZoomState, setCurrentZoomState] = useState();
@@ -86,7 +86,7 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
             .attr("class", "myDot")
             .attr("stroke", "red")
             .attr("r", 4)
-            .attr("fill", "green")
+            .attr("fill", "purple")
             .attr("cx", (value, index) => xScale(index))
             .attr("cy", yScale);
 
@@ -117,7 +117,7 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
 
     return (
         <React.Fragment>
-            <div ref={wrapperRef} style={{ marginBottom: "2rem" }}>
+            <div ref={wrapperRef} style={{ marginBottom: "2rem",position:'relative' }}>
                 <svg ref={svgRef}>
                     <defs>
                         <clipPath id={id}>
@@ -125,10 +125,18 @@ function ZoomableLineChart({ data,data2, id = "myZoomableLineChart", id2 = "myZo
                         </clipPath>
                     </defs>
                     <g className="content" clipPath={`url(#${id})`}></g>
-                    <g className="content2" clipPath={`url(#${id})`}></g>
+                    <g className="content2" clipPath={`url(#${id2})`}></g>
                     <g className="x-axis" />
                     <g className="y-axis" />
                 </svg>
+                <div id="info-bar">
+                    <div id="primary">
+                        <p>{primaryCurrency}</p>
+                    </div>
+                    <div id="secondary">
+                        <p> {secondaryCurrency}</p>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     );
