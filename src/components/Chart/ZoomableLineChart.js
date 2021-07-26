@@ -31,12 +31,10 @@ function ZoomableLineChart({ data, data2, days, id = "myZoomableLineChart", id2 
         const { width, height } =
             dimensions || wrapperRef.current.getBoundingClientRect();
 
-        console.log('days0', days)
         // scales + line generator
         const xScale = scaleLinear()
             .domain([0, data.length - 1])
             .range([10, width - 10]);
-        console.log('xscale', xScale)
         if (currentZoomState) {
             const newXScale = currentZoomState.rescaleX(xScale);
             xScale.domain(newXScale.domain());
