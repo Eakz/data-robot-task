@@ -17,20 +17,29 @@ const CurrencyExchangeForm = () => {
 
     const date = useMemo(() => Object.keys(currencyData)[0], [currencyData[0], loading])
     const handleP = e => {
-        setPrimaryValue(Math.round(Number(e?.target?.value || 1)));
-        setSecondaryValue(Number(Number(e?.target?.value || 1) * currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
+        if (Number(e?.target?.value)) {
+            setPrimaryValue(Math.round(Number(e?.target?.value)));
+            setSecondaryValue(Number(Number(e?.target?.value) * currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
+        } else {
+            setPrimaryValue(e?.target?.value)
+        }
+
     }
     useEffect(() => {
-        setLoading(true)
-        ApiService.apiCall({
-            url: getAlltoOne(primaryCurrency),
-        }).then(response => { dispatch({ type: 'SET_CURRENCY', payload: response.data }); setLoading(false) })
+        if (Number(primaryValue)) {
+            setLoading(true)
+
+            ApiService.apiCall({
+                url: getAlltoOne(primaryCurrency),
+            }).then(response => { dispatch({ type: 'SET_CURRENCY', payload: response.data }); setLoading(false) })
+        }
+
     }, [dispatch, primaryCurrency])
     useEffect(() => {
-        if(Object.keys(currencyData).length){
+        if (Object.keys(currencyData).length) {
             setSecondaryValue(Number(primaryValue * currencyData?.[date]?.[secondaryCurrency]).toFixed(2))
         }
-        
+
     }, [secondaryCurrency, primaryValue])
 
 

@@ -62,7 +62,7 @@ svg {
   /* Media Queries */
   @media screen and (max-width: 1000px) {
     #pageLayout {
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       flex-direction: column;
       padding-top:10%;
@@ -80,5 +80,7 @@ svg {
     .column ul li{
       width: 90%;
     }
-
+  #info-bar{
+    right:0 !important;
+  }
   }
