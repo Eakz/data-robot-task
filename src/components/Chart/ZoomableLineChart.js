@@ -17,10 +17,8 @@ import './styles.css'
  * Component that renders a ZoomableLineChart
  */
 
-function ZoomableLineChart({ data, data2,days, id = "myZoomableLineChart", id2 = "myZoomableLineChart2" }) {
-    console.log(data, data2);
+function ZoomableLineChart({ data, data2, days, id = "myZoomableLineChart", id2 = "myZoomableLineChart2" }) {
     const svgRef = useRef();
-    console.log(days)
     const { theme, primaryCurrency, secondaryCurrency } = useStore()
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
@@ -33,11 +31,12 @@ function ZoomableLineChart({ data, data2,days, id = "myZoomableLineChart", id2 =
         const { width, height } =
             dimensions || wrapperRef.current.getBoundingClientRect();
 
+        console.log('days0', days)
         // scales + line generator
         const xScale = scaleLinear()
             .domain([0, data.length - 1])
             .range([10, width - 10]);
-
+        console.log('xscale', xScale)
         if (currentZoomState) {
             const newXScale = currentZoomState.rescaleX(xScale);
             xScale.domain(newXScale.domain());
@@ -92,7 +91,7 @@ function ZoomableLineChart({ data, data2,days, id = "myZoomableLineChart", id2 =
             .attr("cy", yScale);
 
         // axes
-        const xAxis = axisBottom(xScale);
+        const xAxis = axisBottom(xScale).tickFormat((_, i) => days[i].slice(5));
         svg
             .select(".x-axis")
             .attr("transform", `translate(0, ${height})`)

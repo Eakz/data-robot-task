@@ -1,8 +1,10 @@
 
 #info-bar{
     position: absolute;
+    background:var(--secondary);
+    padding:3px;
     top:0px;
-    right:-45px;
+    right:45px;
     display: flex;
     flex-direction: column;
     font-size: small;

@@ -54,6 +54,10 @@ svg {
   .field input {
     margin-right: 0.5em;
   }
+  #chart-container{
+    width: fit-content;
+    margin:0 12%;
+  }
 
   /* Media Queries */
   @media screen and (max-width: 1000px) {
@@ -66,10 +70,7 @@ svg {
   #pageLayout>*:first-child{
     display: none;
   }
-  #chart-container{
-    width: fit-content;
-    margin:0 12%;
-  }
+
     .column{
       width: 100% !important;
       display: flex;
