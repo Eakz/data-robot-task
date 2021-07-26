@@ -55,15 +55,15 @@ function ZoomableLineChart({ data, data2, days, id = "myZoomableLineChart", id2 
             .data([data])
             .join("path")
             .attr("class", "myLine")
-            .attr("stroke", theme === 'light' ? 'black' : 'white')
+            .attr("stroke", theme === 'light' ? 'green' : 'red')
             .attr("fill", "none")
             .attr("d", lineGenerator);
         svgContent2
-            .selectAll(".myLine")
+            .selectAll(".myLine2")
             .data([data2])
             .join("path")
-            .attr("class", "myLine")
-            .attr("stroke", "red")
+            .attr("class", "myLine2")
+            .attr("stroke", theme === 'light' ? 'red' : 'green')
             .attr("fill", "none")
             .attr("d", lineGenerator);
 
