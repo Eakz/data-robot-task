@@ -1,9 +1,10 @@
 import React from 'react'
 import './styles.css'
 
-const LoadingScreen = ({reversed}) => {
+const LoadingScreen = () => {
+
     return (
-        <div id="loading" className={reversed?"loadingScreenReversed":"loadingScreen"} />
+        <div id="loading" />
     )
 }
 

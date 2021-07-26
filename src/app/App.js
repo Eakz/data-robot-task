@@ -48,18 +48,18 @@ const App = () => {
                     Object.keys(currencyData).length ? <CurrencyList
                         currencyData={currencyData}
                         date={date}
-                    /> : <LoadingScreen reversed />
+                    /> : <LoadingScreen />
                 }
 
 
             </Column>
             <Column>
                 <CurrencyExchangeForm />
-                {graphData[0].length && graphData[1].length && <ZoomableLineChart
+                {graphData[0].length && graphData[1].length ? <ZoomableLineChart
                     data={graphData[0]}
                     data2={graphData[1]}
                     days={graphData[2]}
-                />}
+                /> : <LoadingScreen />}
             </Column>
             <button id="themeButton" onClick={themeChange}>{theme}</button>
 

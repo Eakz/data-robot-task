@@ -1,33 +1,12 @@
-.loadingScreen{
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background: var(--secondary);
-}
-.loadingScreenReversed{
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background: var(--primary);
-}
-.loadingScreen h1{
-    color:var(--primary)
-}
-.loadingScreenReversed h1{
-    color:var(--secondary)
-}
-
 #loading {
+  margin: auto;
   display: inline-block;
   width: 50px;
   height: 50px;
-  border: 3px solid rgba(255,255,255,.3);
+  border: 3px solid var(--secondary);
   border-radius: 50%;
-  border-top-color: #fff;
+  border-top-color: var(--primary);
+  background-color:var(--primary);
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
 }
