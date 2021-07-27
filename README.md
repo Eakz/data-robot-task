@@ -19,7 +19,8 @@ Bonus points
 - Being creative 😉.
 
 # Comments
-I never had figma design so I was simplistic regarding the design and implementation. Also based on the requirement * Minimal dependencies I wasn't using any packages that I would regurlarly use in current circumstances e.g prop-types (if I would keep using JS), sass/scss, typescript, styled components (eases up theme switching) etc.
+I never had figma design so I was simplistic regarding the design and implementation. Also based on the requirement * Minimal dependencies I wasn't using any packages that I would regurlarly use in current circumstances e.g prop-types (if I would keep using JS), sass/scss, typescript, styled components (eases up theme switching) etc. 
+And probably would use react-d3-components for better sync with virtual DOM
 
 ## Available Scripts
 
